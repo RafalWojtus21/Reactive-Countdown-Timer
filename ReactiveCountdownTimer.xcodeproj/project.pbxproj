@@ -40,6 +40,8 @@
 		8B32AE2B2AA0813300FA60F2 /* TimerScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B32AE252AA0813300FA60F2 /* TimerScreenViewController.swift */; };
 		8B32AE2C2AA0813300FA60F2 /* TimerScreenBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B32AE262AA0813300FA60F2 /* TimerScreenBuilder.swift */; };
 		8B32AE2D2AA0813300FA60F2 /* TimerScreenInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B32AE272AA0813300FA60F2 /* TimerScreenInteractor.swift */; };
+		8B32AE322AA0B9F400FA60F2 /* CircularProgressBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B32AE312AA0B9F400FA60F2 /* CircularProgressBar.swift */; };
+		8B32AE342AA0BA5200FA60F2 /* AnimationKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B32AE332AA0BA5200FA60F2 /* AnimationKeys.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -93,6 +95,8 @@
 		8B32AE252AA0813300FA60F2 /* TimerScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerScreenViewController.swift; sourceTree = "<group>"; };
 		8B32AE262AA0813300FA60F2 /* TimerScreenBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerScreenBuilder.swift; sourceTree = "<group>"; };
 		8B32AE272AA0813300FA60F2 /* TimerScreenInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerScreenInteractor.swift; sourceTree = "<group>"; };
+		8B32AE312AA0B9F400FA60F2 /* CircularProgressBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularProgressBar.swift; sourceTree = "<group>"; };
+		8B32AE332AA0BA5200FA60F2 /* AnimationKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimationKeys.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -242,6 +246,7 @@
 		8B32ADEF2AA0797800FA60F2 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				8B32AE2F2AA0B9DD00FA60F2 /* UI Components */,
 				8B32ADF82AA0797800FA60F2 /* Extensions */,
 				8B32AE012AA0797800FA60F2 /* Fonts */,
 				8B32AE042AA0797800FA60F2 /* Helpers */,
@@ -273,6 +278,7 @@
 		8B32AE042AA0797800FA60F2 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				8B32AE332AA0BA5200FA60F2 /* AnimationKeys.swift */,
 				8B32AE052AA0797800FA60F2 /* PropertyWrappers */,
 			);
 			path = Helpers;
@@ -297,6 +303,22 @@
 				8B32AE272AA0813300FA60F2 /* TimerScreenInteractor.swift */,
 			);
 			path = "Timer Screen";
+			sourceTree = "<group>";
+		};
+		8B32AE2F2AA0B9DD00FA60F2 /* UI Components */ = {
+			isa = PBXGroup;
+			children = (
+				8B32AE302AA0B9E200FA60F2 /* Views */,
+			);
+			path = "UI Components";
+			sourceTree = "<group>";
+		};
+		8B32AE302AA0B9E200FA60F2 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				8B32AE312AA0B9F400FA60F2 /* CircularProgressBar.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -447,6 +469,7 @@
 				8B32ADEE2AA0797400FA60F2 /* Localization.General.swift in Sources */,
 				8B32AE2B2AA0813300FA60F2 /* TimerScreenViewController.swift in Sources */,
 				8B32AE0F2AA0797800FA60F2 /* StringExtension.swift in Sources */,
+				8B32AE322AA0B9F400FA60F2 /* CircularProgressBar.swift in Sources */,
 				8B32ADC82AA0795800FA60F2 /* Base.swift in Sources */,
 				8B32ADC72AA0795800FA60F2 /* AppDependencies.swift in Sources */,
 				8B32AE0B2AA0797800FA60F2 /* UIColorExtension.swift in Sources */,
@@ -461,6 +484,7 @@
 				8B32AE2D2AA0813300FA60F2 /* TimerScreenInteractor.swift in Sources */,
 				8B32AE0D2AA0797800FA60F2 /* UIViewExtension.swift in Sources */,
 				8B32AE282AA0813300FA60F2 /* TimerScreenContract.swift in Sources */,
+				8B32AE342AA0BA5200FA60F2 /* AnimationKeys.swift in Sources */,
 				8B32AE2A2AA0813300FA60F2 /* TimerScreenMiddleware.swift in Sources */,
 				8B32ADCB2AA0795800FA60F2 /* SceneDelegate.swift in Sources */,
 			);
