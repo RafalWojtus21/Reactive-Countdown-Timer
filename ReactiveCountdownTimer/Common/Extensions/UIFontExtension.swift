@@ -15,4 +15,5 @@ extension UIFont {
     static let openSansSemiBold16 = UIFont(name: "OpenSans-SemiBold", size: 16)
     static let openSansSemiBold20 = UIFont(name: "OpenSans-SemiBold", size: 20)
     static let openSansSemiBold24 = UIFont(name: "OpenSans-SemiBold", size: 24)
+    static let openSansSemiBold32 = UIFont(name: "OpenSans-SemiBold", size: 32)
 }

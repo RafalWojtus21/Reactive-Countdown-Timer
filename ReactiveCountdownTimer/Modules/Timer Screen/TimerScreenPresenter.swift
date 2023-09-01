@@ -29,6 +29,13 @@ final class TimerScreenPresenterImpl: TimerScreenPresenter {
     func bindIntents(view: View, triggerEffect: PublishSubject<Effect>) -> Observable<ViewState> {
         let intentResults = view.intents.flatMap { [unowned self] intent -> Observable<Result> in
             switch intent {
+            case .startButtonIntent:
+                return .merge(interactor.triggerFirstSession(),
+                              interactor.getRemainingTime())
+            case .pauseButtonIntent:
+                return interactor.pauseTimer()
+            case .resumeButtonIntent:
+                return interactor.resumeTimer()
             }
         }
         return Observable.merge(middleware.middlewareObservable, intentResults)
