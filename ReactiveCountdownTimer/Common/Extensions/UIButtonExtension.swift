@@ -23,15 +23,15 @@ enum BarButtonStyle {
 extension UIButton {
     func apply(style: ButtonStyle, title: String) -> UIButton {
         setTitle(title, for: .normal)
-        setTitleColor(.tertiaryColor, for: .normal)
+        setTitleColor(.black, for: .normal)
         titleLabel?.font = .openSansSemiBold20
+        layer.cornerRadius = 25
         switch style {
         case .primary:
-            backgroundColor = isEnabled ? .primaryColor : .tertiaryColorDisabled
-            layer.cornerRadius = 25
+            backgroundColor = isEnabled ? .secondaryColor : .white
+            setTitleColor(.black, for: .normal)
         case .quaternary:
-            layer.cornerRadius = 25
-            backgroundColor = isEnabled ? .quaternaryColor : .white
+            backgroundColor = isEnabled ? .white.withAlphaComponent(0.9) : .tertiaryColorDisabled
         }
         return self
     }

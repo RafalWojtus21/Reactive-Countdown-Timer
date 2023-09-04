@@ -44,6 +44,9 @@
 		8B32AE342AA0BA5200FA60F2 /* AnimationKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B32AE332AA0BA5200FA60F2 /* AnimationKeys.swift */; };
 		8B32AE362AA0BF6D00FA60F2 /* UIButtonExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B32AE352AA0BF6D00FA60F2 /* UIButtonExtension.swift */; };
 		8B425B972AA1EDBE00A3A762 /* CodeReviewSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B425B962AA1EDBE00A3A762 /* CodeReviewSession.swift */; };
+		8B425B9A2AA5D4F500A3A762 /* SessionTrackerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B425B992AA5D4F500A3A762 /* SessionTrackerCell.swift */; };
+		8B425B9C2AA5D50D00A3A762 /* UITableViewCellExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B425B9B2AA5D50C00A3A762 /* UITableViewCellExtension.swift */; };
+		8B425B9E2AA5D56500A3A762 /* IntExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B425B9D2AA5D56500A3A762 /* IntExtension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -101,6 +104,9 @@
 		8B32AE332AA0BA5200FA60F2 /* AnimationKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimationKeys.swift; sourceTree = "<group>"; };
 		8B32AE352AA0BF6D00FA60F2 /* UIButtonExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIButtonExtension.swift; sourceTree = "<group>"; };
 		8B425B962AA1EDBE00A3A762 /* CodeReviewSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodeReviewSession.swift; sourceTree = "<group>"; };
+		8B425B992AA5D4F500A3A762 /* SessionTrackerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionTrackerCell.swift; sourceTree = "<group>"; };
+		8B425B9B2AA5D50C00A3A762 /* UITableViewCellExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITableViewCellExtension.swift; sourceTree = "<group>"; };
+		8B425B9D2AA5D56500A3A762 /* IntExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntExtension.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -268,6 +274,8 @@
 				8B32ADFC2AA0797800FA60F2 /* UIFontExtension.swift */,
 				8B32ADFD2AA0797800FA60F2 /* StringExtension.swift */,
 				8B32ADFF2AA0797800FA60F2 /* LoggerExtension.swift */,
+				8B425B9B2AA5D50C00A3A762 /* UITableViewCellExtension.swift */,
+				8B425B9D2AA5D56500A3A762 /* IntExtension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -314,6 +322,7 @@
 		8B32AE2F2AA0B9DD00FA60F2 /* UI Components */ = {
 			isa = PBXGroup;
 			children = (
+				8B425B982AA5D4ED00A3A762 /* Cells */,
 				8B32AE302AA0B9E200FA60F2 /* Views */,
 			);
 			path = "UI Components";
@@ -333,6 +342,14 @@
 				8B425B962AA1EDBE00A3A762 /* CodeReviewSession.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		8B425B982AA5D4ED00A3A762 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				8B425B992AA5D4F500A3A762 /* SessionTrackerCell.swift */,
+			);
+			path = Cells;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -487,9 +504,11 @@
 				8B32ADC82AA0795800FA60F2 /* Base.swift in Sources */,
 				8B32ADC72AA0795800FA60F2 /* AppDependencies.swift in Sources */,
 				8B32AE0B2AA0797800FA60F2 /* UIColorExtension.swift in Sources */,
+				8B425B9E2AA5D56500A3A762 /* IntExtension.swift in Sources */,
 				8B32ADCA2AA0795800FA60F2 /* MainFlowController.swift in Sources */,
 				8B32AE152AA0797800FA60F2 /* IntentSubject.swift in Sources */,
 				8B32ADE72AA0797000FA60F2 /* TimerManager.swift in Sources */,
+				8B425B9C2AA5D50D00A3A762 /* UITableViewCellExtension.swift in Sources */,
 				8B32AE2C2AA0813300FA60F2 /* TimerScreenBuilder.swift in Sources */,
 				8B32AE292AA0813300FA60F2 /* TimerScreenPresenter.swift in Sources */,
 				8B32AE0E2AA0797800FA60F2 /* UIFontExtension.swift in Sources */,
@@ -497,6 +516,7 @@
 				8B32ADC62AA0795800FA60F2 /* Navigation.swift in Sources */,
 				8B32AE362AA0BF6D00FA60F2 /* UIButtonExtension.swift in Sources */,
 				8B32AE2D2AA0813300FA60F2 /* TimerScreenInteractor.swift in Sources */,
+				8B425B9A2AA5D4F500A3A762 /* SessionTrackerCell.swift in Sources */,
 				8B32AE0D2AA0797800FA60F2 /* UIViewExtension.swift in Sources */,
 				8B32AE282AA0813300FA60F2 /* TimerScreenContract.swift in Sources */,
 				8B32AE342AA0BA5200FA60F2 /* AnimationKeys.swift in Sources */,

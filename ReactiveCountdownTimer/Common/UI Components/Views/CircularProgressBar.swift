@@ -68,6 +68,7 @@ class CircularProgressBarView: UIView {
         progressLayer.beginTime = 0.0
         progressLayer.timeOffset = 0.0
         progressLayer.strokeEnd = CGFloat(duration)
+        layer.resumeAnimation()
         progressLayer.add(animation, forKey: AnimationKeys.circularProgressAnimation)
     }
     

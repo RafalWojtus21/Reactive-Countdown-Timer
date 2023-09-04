@@ -25,6 +25,8 @@ final class TimerScreenMiddlewareImpl: TimerScreenMiddleware, TimerScreenCallbac
         case .partialState(_): break
         case .effect(let effect):
             switch effect {
+            case .codeReviewPlanFinished:
+                break
             }
         }
         return .just(result)

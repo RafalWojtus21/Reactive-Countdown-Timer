@@ -21,6 +21,20 @@ final class TimerScreenViewController: BaseViewController, TimerScreenView {
     private let bag = DisposeBag()
     private let presenter: TimerScreenPresenter
     
+    private var sessionTrackerSubject = PublishSubject<[TimerScreen.Row]>()
+    private var currentSessionIndexSubject = BehaviorSubject<Int>(value: 0)
+    
+    private lazy var sessionContentView = UIView(backgroundColor: .secondaryColor)
+    
+    private lazy var currentSessionNameLabel: UILabel = {
+        let label = UILabel()
+        label.font = .openSansSemiBold32
+        label.textColor = .black
+        label.numberOfLines = 2
+        label.textAlignment = .center
+        return label
+    }()
+    
     private lazy var timeLeftLabel: UILabel = {
         let label = UILabel()
         label.font = .openSansSemiBold32
@@ -68,6 +82,16 @@ final class TimerScreenViewController: BaseViewController, TimerScreenView {
         return button
     }()
     
+    private var tableView: UITableView = {
+        let tableView = UITableView()
+        tableView.backgroundColor = .clear
+        tableView.separatorStyle = .none
+        tableView.rowHeight = 80
+        tableView.register(SessionTrackerCell.self)
+        tableView.allowsSelection = true
+        return tableView
+    }()
+    
     private lazy var circularProgressBar = CircularProgressBarView()
     
     init(presenter: TimerScreenPresenter) {
@@ -88,29 +112,43 @@ final class TimerScreenViewController: BaseViewController, TimerScreenView {
         presenter.bindIntents(view: self, triggerEffect: effectsSubject)
             .subscribe(onNext: { [weak self] state in self?.render(state: state) })
             .disposed(by: bag)
+        _intents.subject.onNext(.viewLoaded)
     }
     
     private func layoutView() {
-        view.backgroundColor = .secondaryColor
-        view.addSubview(timeLeftLabel)
-        view.addSubview(circularProgressBar)
-        view.addSubview(eventControlView)
+        view.backgroundColor = .primaryColor
+        view.addSubview(sessionContentView)
+        sessionContentView.addSubview(currentSessionNameLabel)
+        sessionContentView.addSubview(circularProgressBar)
+        circularProgressBar.addSubview(timeLeftLabel)
+        sessionContentView.addSubview(tableView)
         view.addSubview(timerControlView)
+        view.addSubview(eventControlView)
+        
+        currentSessionNameLabel.snp.makeConstraints {
+            $0.left.right.equalToSuperview()
+            $0.top.equalTo(view.safeAreaLayoutGuide).inset(50)
+            $0.height.equalTo(50)
+        }
+        
+        sessionContentView.snp.makeConstraints {
+            $0.top.left.right.equalToSuperview()
+            $0.height.equalToSuperview().multipliedBy(0.8)
+        }
         
         timeLeftLabel.snp.makeConstraints {
-            $0.left.right.equalToSuperview()
-            $0.bottom.equalTo(circularProgressBar.snp.top).offset(-16)
-            $0.height.equalTo(32)
+            $0.center.equalTo(circularProgressBar.snp.center)
+            $0.width.equalTo(circularProgressBar.snp.width).inset(12)
         }
         
         circularProgressBar.snp.makeConstraints {
-            $0.top.equalTo(view.safeAreaLayoutGuide).inset(100)
+            $0.top.equalTo(currentSessionNameLabel.snp.bottom).offset(24)
             $0.left.right.equalToSuperview()
             $0.height.equalTo(300)
         }
         
-        eventControlView.snp.makeConstraints {
-            $0.top.equalTo(circularProgressBar.snp.bottom).offset(12)
+        timerControlView.snp.makeConstraints {
+            $0.top.equalTo(sessionContentView.snp.bottom).offset(12)
             $0.height.equalTo(50)
             $0.left.right.equalToSuperview()
         }
@@ -125,8 +163,8 @@ final class TimerScreenViewController: BaseViewController, TimerScreenView {
             $0.left.right.equalToSuperview().inset(48)
         }
         
-        timerControlView.snp.makeConstraints {
-            $0.top.equalTo(eventControlView.snp.bottom).offset(12)
+        eventControlView.snp.makeConstraints {
+            $0.top.equalTo(timerControlView.snp.bottom).offset(12)
             $0.height.equalTo(50)
             $0.left.right.equalToSuperview()
         }
@@ -140,9 +178,31 @@ final class TimerScreenViewController: BaseViewController, TimerScreenView {
             $0.height.equalToSuperview()
             $0.left.right.equalToSuperview().inset(48)
         }
+        
+        tableView.snp.makeConstraints {
+            $0.left.right.equalToSuperview()
+            $0.bottom.equalToSuperview().inset(24)
+            $0.height.equalTo(160)
+        }
     }
     
     private func bindControls() {
+        sessionTrackerSubject
+            .bind(to: tableView.rx.items(cellIdentifier: SessionTrackerCell.reuseIdentifier, cellType: SessionTrackerCell.self)) { _, item, cell in
+                cell.configure(with: SessionTrackerCell.ViewModel(sessionName: item.session.title, duration: item.session.duration, isSelected: item.isSelected))
+            }
+            .disposed(by: bag)
+        
+        currentSessionIndexSubject
+            .distinctUntilChanged()
+            .skip(1)
+            .subscribe(onNext: { [weak self] currentSessionIndex in
+                guard let self else { return }
+                let indexPath = IndexPath(row: currentSessionIndex, section: 0)
+                self.tableView.selectRow(at: indexPath, animated: true, scrollPosition: .middle)
+            })
+            .disposed(by: bag)
+        
         let startButtonIntent = startButton.rx.tap.map { Intent.startButtonIntent }
         let pauseButtonIntent = pauseButton.rx.tap.map {
             self.circularProgressBar.pauseAnimation()
@@ -153,13 +213,20 @@ final class TimerScreenViewController: BaseViewController, TimerScreenView {
             return Intent.resumeButtonIntent
         }
         
-        Observable.merge(startButtonIntent, pauseButtonIntent, resumeButtonIntent)
+        let nextButtonIntent = nextEventButton.rx.tap.map {
+            self.circularProgressBar.removeAnimation()
+            return Intent.nextButtonIntent
+        }
+        
+        Observable.merge(startButtonIntent, pauseButtonIntent, resumeButtonIntent, nextButtonIntent)
             .bind(to: _intents.subject)
             .disposed(by: bag)
     }
     
     private func trigger(effect: Effect) {
         switch effect {
+        case .codeReviewPlanFinished:
+            print("plan finished")
         }
     }
     
@@ -170,6 +237,16 @@ final class TimerScreenViewController: BaseViewController, TimerScreenView {
         pauseButton.isEnabled = state.isPauseButtonEnabled
         resumeButton.isHidden = !state.isResumeButtonVisible
         resumeButton.isEnabled = state.isResumeButtonEnabled
+        
+        if state.shouldChangeTable {
+            sessionTrackerSubject.onNext(state.codeReviewSessions)
+        }
+        
+        currentSessionIndexSubject.onNext(state.currentSessionIndex)
+                
+        if state.shouldChangeSessionName {
+            currentSessionNameLabel.text = state.codeReviewSessions[state.currentSessionIndex].session.title
+        }
         
         timeLeftLabel.text = "\(state.timeLeft)" + "s"
         if state.shouldChangeAnimation {

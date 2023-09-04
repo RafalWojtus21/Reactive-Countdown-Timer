@@ -6,6 +6,7 @@
 //
 
 import RxSwift
+import RxRelay
 
 final class TimerScreenInteractorImpl: TimerScreenInteractor {
     
@@ -16,6 +17,7 @@ final class TimerScreenInteractorImpl: TimerScreenInteractor {
     
     private let dependencies: Dependencies
     private let codeReviewSessions: [CodeReviewSession]
+    private let currentSessionTracker = BehaviorRelay<Int>(value: 0)
     
     // MARK: Initialization
 
@@ -26,37 +28,53 @@ final class TimerScreenInteractorImpl: TimerScreenInteractor {
     
     // MARK: Public Implementation
     
-//    func triggerFirstSession() -> RxSwift.Observable<TimerScreenResult> {
-//        guard let sessionDuration = codeReviewSessions.first?.duration else { return .just(.partialState(.idle)) }
-//        dependencies.timerManager.setTimer(countdownValue: sessionDuration)
-//        return .merge(.just(.partialState(.updateIntervalStatte(intervalState: .running))),
-//                      .just(.partialState(.setAnimationDuration(duration: sessionDuration))))
-//    }
+    func loadSessions() -> Observable<TimerScreenResult> {
+        return .just(.partialState(.loadSessions(sessions: codeReviewSessions)))
+    }
     
-    func triggerFirstSession() -> RxSwift.Observable<TimerScreenResult> {
-        guard let sessionDuration = codeReviewSessions.first?.duration else { return .just(.partialState(.idle)) }
-        dependencies.timerManager.start(countdownValue: sessionDuration)
-        return .merge(.just(.partialState(.updateIntervalStatte(intervalState: .running))),
-                      .just(.partialState(.setAnimationDuration(duration: sessionDuration))))
+    func triggerFirstSession() -> Observable<TimerScreenResult> {
+        guard let firstSession = codeReviewSessions.first else { return .just(.partialState(.idle)) }
+        return handleCurrentSession(firstSession)
     }
     
     func getRemainingTime() -> Observable<TimerScreenResult> {
         dependencies.timerManager.countdownObserver
             .map { timeLeft in
-                print("time left: \(timeLeft)")
                 return .partialState(.setTimeLeftValue(timeLeft: timeLeft))
             }
     }
     
-    func pauseTimer() -> RxSwift.Observable<TimerScreenResult> {
+    func pauseTimer() -> Observable<TimerScreenResult> {
         dependencies.timerManager.pause()
         return .just(.partialState(.updateIntervalStatte(intervalState: .paused)))
     }
 
-    func resumeTimer() -> RxSwift.Observable<TimerScreenResult> {
+    func resumeTimer() -> Observable<TimerScreenResult> {
         dependencies.timerManager.resume()
         return .just(.partialState(.updateIntervalStatte(intervalState: .running)))
     }
     
+    func triggerNextSession() -> Observable<TimerScreenResult> {
+        dependencies.timerManager.stop()
+        currentSessionTracker.accept(currentSessionTracker.value + 1)
+        guard currentSessionTracker.value < codeReviewSessions.count else {
+            return finishSession()
+        }
+        return handleCurrentSession(codeReviewSessions[currentSessionTracker.value])
+    }
+    
+    
     // MARK: Private Implementation
+    
+    private func handleCurrentSession(_ session: CodeReviewSession) -> Observable<TimerScreenResult> {
+        dependencies.timerManager.start(countdownValue: session.duration)
+        return .merge(.just(.partialState(.updateIntervalStatte(intervalState: .running))),
+                      .just(.partialState(.triggerAnimation(duration: session.duration))),
+                      .just(.partialState(.setCurrentSessionIndex(currentIndex: currentSessionTracker.value))))
+    }
+    
+    private func finishSession() -> Observable<TimerScreenResult> {
+        return .merge(.just(.effect(.codeReviewPlanFinished)),
+                      .just(.partialState(.updateIntervalStatte(intervalState: .finished))))
+    }
 }

@@ -50,7 +50,13 @@ final class MainFlowController: AppNavigation {
     }
     
     private func showtimerScreen() {
-        let view = timerScreenBuilder.build(with: .init()).view
+        let codeReviewPlan: [CodeReviewSession] = [
+            CodeReviewSession(title: "Feature A Review", duration: 20),
+            CodeReviewSession(title: "Bug Fix Review", duration: 10),
+            CodeReviewSession(title: "Refactoring Review", duration: 15),
+            CodeReviewSession(title: "Documentation Review", duration: 19),
+        ]
+        let view = timerScreenBuilder.build(with: .init(codeReviewPlan: codeReviewPlan)).view
         dependencies.navigation.show(view: view, animated: false)
     }
 }
