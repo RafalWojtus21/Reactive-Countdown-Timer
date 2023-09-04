@@ -1,15 +1,15 @@
 //
-//  TimerScreenMiddleware.swift
+//  SummaryScreenMiddleware.swift
 //  ReactiveCountdownTimer
 //
-//  Created by Rafał Wojtuś on 31/08/2023.
+//  Created by Rafał Wojtuś on 05/09/2023.
 //
 
 import RxSwift
 
-final class TimerScreenMiddlewareImpl: TimerScreenMiddleware, TimerScreenCallback {
+final class SummaryScreenMiddlewareImpl: SummaryScreenMiddleware, SummaryScreenCallback {
     typealias Dependencies = HasAppNavigation
-    typealias Result = TimerScreenResult
+    typealias Result = SummaryScreenResult
     
     private let dependencies: Dependencies
 
@@ -25,8 +25,8 @@ final class TimerScreenMiddlewareImpl: TimerScreenMiddleware, TimerScreenCallbac
         case .partialState(_): break
         case .effect(let effect):
             switch effect {
-            case .codeReviewPlanFinished(let finishedSession):
-                dependencies.appNavigation?.showSummaryScreen(finishedSession)
+            case .showTimerScreen:
+                dependencies.appNavigation?.showTimerScreen()
             }
         }
         return .just(result)

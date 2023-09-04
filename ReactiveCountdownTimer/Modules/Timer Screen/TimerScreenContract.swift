@@ -48,7 +48,7 @@ struct TimerScreenViewState: Equatable {
 }
 
 enum TimerScreenEffect: Equatable {
-    case codeReviewPlanFinished
+    case codeReviewPlanFinished(_: FinishedSessionPlan)
 }
 
 struct TimerScreenBuilderInput {

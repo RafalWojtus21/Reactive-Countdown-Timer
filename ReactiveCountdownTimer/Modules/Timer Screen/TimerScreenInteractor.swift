@@ -7,6 +7,7 @@
 
 import RxSwift
 import RxRelay
+import Foundation
 
 final class TimerScreenInteractorImpl: TimerScreenInteractor {
     
@@ -16,9 +17,11 @@ final class TimerScreenInteractorImpl: TimerScreenInteractor {
     typealias Result = TimerScreenResult
     
     private let dependencies: Dependencies
-    private let codeReviewSessions: [CodeReviewSession]
+    private var codeReviewSessions: [CodeReviewSession]
     private let currentSessionTracker = BehaviorRelay<Int>(value: 0)
-    
+    private var startTime: Date?
+    private var currentSessionStartTime = BehaviorRelay<Date?>(value: nil)
+
     // MARK: Initialization
 
     init(dependencies: Dependencies, codeReviewSessions: [CodeReviewSession]) {
@@ -34,6 +37,8 @@ final class TimerScreenInteractorImpl: TimerScreenInteractor {
     
     func triggerFirstSession() -> Observable<TimerScreenResult> {
         guard let firstSession = codeReviewSessions.first else { return .just(.partialState(.idle)) }
+        startTime = Date()
+        currentSessionStartTime.accept(Date())
         return handleCurrentSession(firstSession)
     }
     
@@ -56,6 +61,8 @@ final class TimerScreenInteractorImpl: TimerScreenInteractor {
     
     func triggerNextSession() -> Observable<TimerScreenResult> {
         dependencies.timerManager.stop()
+        calculateLastSessionDuration()
+        currentSessionStartTime.accept(Date())
         currentSessionTracker.accept(currentSessionTracker.value + 1)
         guard currentSessionTracker.value < codeReviewSessions.count else {
             return finishSession()
@@ -63,18 +70,25 @@ final class TimerScreenInteractorImpl: TimerScreenInteractor {
         return handleCurrentSession(codeReviewSessions[currentSessionTracker.value])
     }
     
+    private func calculateLastSessionDuration() {
+        guard let sessionStartTime = currentSessionStartTime.value else { return }
+        let sessionEndTime = Date()
+        let actualTime = sessionEndTime.timeIntervalSince(sessionStartTime)
+        codeReviewSessions[currentSessionTracker.value].actualDuration = Int(actualTime.rounded(.toNearestOrAwayFromZero))
+    }
     
     // MARK: Private Implementation
     
     private func handleCurrentSession(_ session: CodeReviewSession) -> Observable<TimerScreenResult> {
-        dependencies.timerManager.start(countdownValue: session.duration)
+        dependencies.timerManager.start(countdownValue: session.scheduledDuration)
         return .merge(.just(.partialState(.updateIntervalStatte(intervalState: .running))),
-                      .just(.partialState(.triggerAnimation(duration: session.duration))),
+                      .just(.partialState(.triggerAnimation(duration: session.scheduledDuration))),
                       .just(.partialState(.setCurrentSessionIndex(currentIndex: currentSessionTracker.value))))
     }
     
     private func finishSession() -> Observable<TimerScreenResult> {
-        return .merge(.just(.effect(.codeReviewPlanFinished)),
-                      .just(.partialState(.updateIntervalStatte(intervalState: .finished))))
+        let finishedSessionPlan = FinishedSessionPlan(sessions: codeReviewSessions, startTime: startTime ?? Date(), finishTime: Date())
+        return .merge(.just(.partialState(.updateIntervalStatte(intervalState: .finished))),
+                      .just(.effect(.codeReviewPlanFinished(finishedSessionPlan))) )
     }
 }

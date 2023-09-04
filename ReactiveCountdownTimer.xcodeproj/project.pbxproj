@@ -47,6 +47,17 @@
 		8B425B9A2AA5D4F500A3A762 /* SessionTrackerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B425B992AA5D4F500A3A762 /* SessionTrackerCell.swift */; };
 		8B425B9C2AA5D50D00A3A762 /* UITableViewCellExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B425B9B2AA5D50C00A3A762 /* UITableViewCellExtension.swift */; };
 		8B425B9E2AA5D56500A3A762 /* IntExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B425B9D2AA5D56500A3A762 /* IntExtension.swift */; };
+		8B425BBE2AA730F500A3A762 /* FinishedSessionPlan.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B425BBD2AA730F500A3A762 /* FinishedSessionPlan.swift */; };
+		8B425BC52AA7313E00A3A762 /* SummaryScreenContract.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B425BBF2AA7313E00A3A762 /* SummaryScreenContract.swift */; };
+		8B425BC62AA7313E00A3A762 /* SummaryScreenPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B425BC02AA7313E00A3A762 /* SummaryScreenPresenter.swift */; };
+		8B425BC72AA7313E00A3A762 /* SummaryScreenMiddleware.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B425BC12AA7313E00A3A762 /* SummaryScreenMiddleware.swift */; };
+		8B425BC82AA7313E00A3A762 /* SummaryScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B425BC22AA7313E00A3A762 /* SummaryScreenViewController.swift */; };
+		8B425BC92AA7313E00A3A762 /* SummaryScreenBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B425BC32AA7313E00A3A762 /* SummaryScreenBuilder.swift */; };
+		8B425BCA2AA7313E00A3A762 /* SummaryScreenInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B425BC42AA7313E00A3A762 /* SummaryScreenInteractor.swift */; };
+		8B425BCD2AA732E100A3A762 /* SessionSummaryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B425BCC2AA732E100A3A762 /* SessionSummaryCollectionViewCell.swift */; };
+		8B425BCF2AA732F900A3A762 /* UICollectionViewCellExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B425BCE2AA732F900A3A762 /* UICollectionViewCellExtension.swift */; };
+		8B425BD12AA7334A00A3A762 /* PaddingLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B425BD02AA7334A00A3A762 /* PaddingLabel.swift */; };
+		8B425BD32AA73AB700A3A762 /* DateFormatterExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B425BD22AA73AB700A3A762 /* DateFormatterExtension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -107,6 +118,17 @@
 		8B425B992AA5D4F500A3A762 /* SessionTrackerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionTrackerCell.swift; sourceTree = "<group>"; };
 		8B425B9B2AA5D50C00A3A762 /* UITableViewCellExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITableViewCellExtension.swift; sourceTree = "<group>"; };
 		8B425B9D2AA5D56500A3A762 /* IntExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntExtension.swift; sourceTree = "<group>"; };
+		8B425BBD2AA730F500A3A762 /* FinishedSessionPlan.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinishedSessionPlan.swift; sourceTree = "<group>"; };
+		8B425BBF2AA7313E00A3A762 /* SummaryScreenContract.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryScreenContract.swift; sourceTree = "<group>"; };
+		8B425BC02AA7313E00A3A762 /* SummaryScreenPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryScreenPresenter.swift; sourceTree = "<group>"; };
+		8B425BC12AA7313E00A3A762 /* SummaryScreenMiddleware.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryScreenMiddleware.swift; sourceTree = "<group>"; };
+		8B425BC22AA7313E00A3A762 /* SummaryScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryScreenViewController.swift; sourceTree = "<group>"; };
+		8B425BC32AA7313E00A3A762 /* SummaryScreenBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryScreenBuilder.swift; sourceTree = "<group>"; };
+		8B425BC42AA7313E00A3A762 /* SummaryScreenInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryScreenInteractor.swift; sourceTree = "<group>"; };
+		8B425BCC2AA732E100A3A762 /* SessionSummaryCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionSummaryCollectionViewCell.swift; sourceTree = "<group>"; };
+		8B425BCE2AA732F900A3A762 /* UICollectionViewCellExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UICollectionViewCellExtension.swift; sourceTree = "<group>"; };
+		8B425BD02AA7334A00A3A762 /* PaddingLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaddingLabel.swift; sourceTree = "<group>"; };
+		8B425BD22AA73AB700A3A762 /* DateFormatterExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateFormatterExtension.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -161,11 +183,11 @@
 		8B32AD8B2AA078B600FA60F2 /* ReactiveCountdownTimer */ = {
 			isa = PBXGroup;
 			children = (
+				8B32ADBC2AA0795800FA60F2 /* Application */,
 				8B32ADE52AA0797000FA60F2 /* Services */,
 				8B32ADCC2AA0796B00FA60F2 /* Modules */,
 				8B32ADEF2AA0797800FA60F2 /* Common */,
 				8B32ADE82AA0797400FA60F2 /* Localization */,
-				8B32ADBC2AA0795800FA60F2 /* Application */,
 				8B32AD952AA078B700FA60F2 /* Assets.xcassets */,
 				8B32AD972AA078B700FA60F2 /* LaunchScreen.storyboard */,
 				8B32AD9A2AA078B700FA60F2 /* Info.plist */,
@@ -193,12 +215,12 @@
 		8B32ADBC2AA0795800FA60F2 /* Application */ = {
 			isa = PBXGroup;
 			children = (
+				8B32ADC22AA0795800FA60F2 /* AppDelegate.swift */,
+				8B32ADC52AA0795800FA60F2 /* SceneDelegate.swift */,
+				8B32ADC12AA0795800FA60F2 /* Base.swift */,
 				8B32ADC32AA0795800FA60F2 /* FlowControllers */,
 				8B32ADBD2AA0795800FA60F2 /* Navigation */,
 				8B32ADBF2AA0795800FA60F2 /* Dependencies */,
-				8B32ADC12AA0795800FA60F2 /* Base.swift */,
-				8B32ADC22AA0795800FA60F2 /* AppDelegate.swift */,
-				8B32ADC52AA0795800FA60F2 /* SceneDelegate.swift */,
 			);
 			path = Application;
 			sourceTree = "<group>";
@@ -231,6 +253,7 @@
 			isa = PBXGroup;
 			children = (
 				8B32AE2E2AA0813900FA60F2 /* Timer Screen */,
+				8B425BCB2AA7314100A3A762 /* Summary Screen */,
 			);
 			path = Modules;
 			sourceTree = "<group>";
@@ -275,7 +298,9 @@
 				8B32ADFD2AA0797800FA60F2 /* StringExtension.swift */,
 				8B32ADFF2AA0797800FA60F2 /* LoggerExtension.swift */,
 				8B425B9B2AA5D50C00A3A762 /* UITableViewCellExtension.swift */,
+				8B425BCE2AA732F900A3A762 /* UICollectionViewCellExtension.swift */,
 				8B425B9D2AA5D56500A3A762 /* IntExtension.swift */,
+				8B425BD22AA73AB700A3A762 /* DateFormatterExtension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -332,6 +357,7 @@
 			isa = PBXGroup;
 			children = (
 				8B32AE312AA0B9F400FA60F2 /* CircularProgressBar.swift */,
+				8B425BD02AA7334A00A3A762 /* PaddingLabel.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -340,6 +366,7 @@
 			isa = PBXGroup;
 			children = (
 				8B425B962AA1EDBE00A3A762 /* CodeReviewSession.swift */,
+				8B425BBD2AA730F500A3A762 /* FinishedSessionPlan.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -348,8 +375,22 @@
 			isa = PBXGroup;
 			children = (
 				8B425B992AA5D4F500A3A762 /* SessionTrackerCell.swift */,
+				8B425BCC2AA732E100A3A762 /* SessionSummaryCollectionViewCell.swift */,
 			);
 			path = Cells;
+			sourceTree = "<group>";
+		};
+		8B425BCB2AA7314100A3A762 /* Summary Screen */ = {
+			isa = PBXGroup;
+			children = (
+				8B425BBF2AA7313E00A3A762 /* SummaryScreenContract.swift */,
+				8B425BC02AA7313E00A3A762 /* SummaryScreenPresenter.swift */,
+				8B425BC12AA7313E00A3A762 /* SummaryScreenMiddleware.swift */,
+				8B425BC22AA7313E00A3A762 /* SummaryScreenViewController.swift */,
+				8B425BC32AA7313E00A3A762 /* SummaryScreenBuilder.swift */,
+				8B425BC42AA7313E00A3A762 /* SummaryScreenInteractor.swift */,
+			);
+			path = "Summary Screen";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -497,29 +538,40 @@
 			files = (
 				8B32AE112AA0797800FA60F2 /* LoggerExtension.swift in Sources */,
 				8B32ADC92AA0795800FA60F2 /* AppDelegate.swift in Sources */,
+				8B425BCD2AA732E100A3A762 /* SessionSummaryCollectionViewCell.swift in Sources */,
+				8B425BCA2AA7313E00A3A762 /* SummaryScreenInteractor.swift in Sources */,
+				8B425BC62AA7313E00A3A762 /* SummaryScreenPresenter.swift in Sources */,
+				8B425BD32AA73AB700A3A762 /* DateFormatterExtension.swift in Sources */,
 				8B32ADEE2AA0797400FA60F2 /* Localization.General.swift in Sources */,
+				8B425BC72AA7313E00A3A762 /* SummaryScreenMiddleware.swift in Sources */,
 				8B32AE2B2AA0813300FA60F2 /* TimerScreenViewController.swift in Sources */,
 				8B32AE0F2AA0797800FA60F2 /* StringExtension.swift in Sources */,
+				8B425BBE2AA730F500A3A762 /* FinishedSessionPlan.swift in Sources */,
 				8B32AE322AA0B9F400FA60F2 /* CircularProgressBar.swift in Sources */,
 				8B32ADC82AA0795800FA60F2 /* Base.swift in Sources */,
 				8B32ADC72AA0795800FA60F2 /* AppDependencies.swift in Sources */,
 				8B32AE0B2AA0797800FA60F2 /* UIColorExtension.swift in Sources */,
 				8B425B9E2AA5D56500A3A762 /* IntExtension.swift in Sources */,
 				8B32ADCA2AA0795800FA60F2 /* MainFlowController.swift in Sources */,
+				8B425BC92AA7313E00A3A762 /* SummaryScreenBuilder.swift in Sources */,
 				8B32AE152AA0797800FA60F2 /* IntentSubject.swift in Sources */,
 				8B32ADE72AA0797000FA60F2 /* TimerManager.swift in Sources */,
+				8B425BCF2AA732F900A3A762 /* UICollectionViewCellExtension.swift in Sources */,
 				8B425B9C2AA5D50D00A3A762 /* UITableViewCellExtension.swift in Sources */,
 				8B32AE2C2AA0813300FA60F2 /* TimerScreenBuilder.swift in Sources */,
 				8B32AE292AA0813300FA60F2 /* TimerScreenPresenter.swift in Sources */,
 				8B32AE0E2AA0797800FA60F2 /* UIFontExtension.swift in Sources */,
 				8B32ADEC2AA0797400FA60F2 /* Localization.swift in Sources */,
 				8B32ADC62AA0795800FA60F2 /* Navigation.swift in Sources */,
+				8B425BD12AA7334A00A3A762 /* PaddingLabel.swift in Sources */,
 				8B32AE362AA0BF6D00FA60F2 /* UIButtonExtension.swift in Sources */,
 				8B32AE2D2AA0813300FA60F2 /* TimerScreenInteractor.swift in Sources */,
 				8B425B9A2AA5D4F500A3A762 /* SessionTrackerCell.swift in Sources */,
 				8B32AE0D2AA0797800FA60F2 /* UIViewExtension.swift in Sources */,
+				8B425BC52AA7313E00A3A762 /* SummaryScreenContract.swift in Sources */,
 				8B32AE282AA0813300FA60F2 /* TimerScreenContract.swift in Sources */,
 				8B32AE342AA0BA5200FA60F2 /* AnimationKeys.swift in Sources */,
+				8B425BC82AA7313E00A3A762 /* SummaryScreenViewController.swift in Sources */,
 				8B32AE2A2AA0813300FA60F2 /* TimerScreenMiddleware.swift in Sources */,
 				8B32ADCB2AA0795800FA60F2 /* SceneDelegate.swift in Sources */,
 				8B425B972AA1EDBE00A3A762 /* CodeReviewSession.swift in Sources */,

@@ -9,5 +9,6 @@ import Foundation
 
 struct CodeReviewSession: Equatable {
     let title: String
-    let duration: Int
+    let scheduledDuration: Int
+    var actualDuration: Int?
 }

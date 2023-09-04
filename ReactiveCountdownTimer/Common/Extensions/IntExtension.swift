@@ -11,31 +11,30 @@ extension Int {
     static func calculateFormattedDuration(duration: Int) -> String {
         typealias L = Localization.General
         
-        var formattedDuration: String
-        switch duration {
-        case 0 ..< 60:
-            let secondsForm = duration == 1 ? "second" : "seconds"
-            formattedDuration = "\(duration) \(secondsForm)"
-        case 60 ..< 3600:
-            let minutes = duration / 60
-            let seconds = duration % 60
-            let minutesForm = minutes == 1 ? "minute" : "minutes"
-            let minutesString = "\(minutes) \(minutesForm)"
-            let secondsForm = seconds == 1 ? "second" : "seconds"
-            let secondsString = "\(seconds) \(secondsForm)"
-            formattedDuration = "\(minutesString) \(secondsString)"
-        default:
-            let hours = duration / 3600
-            let minutes = (duration % 3600) / 60
-            let seconds = (duration % 3600) % 60
-            let hoursForm = hours == 1 ? "hour" : "hours"
-            let hoursString = "\(hours) \(hoursForm)"
-            let minutesForm = minutes == 1 ? "minute" : "minutes"
-            let minutesString = "\(minutes) \(minutesForm)"
-            let secondsForm = seconds == 1 ? "second" : "seconds"
-            let secondsString = "\(seconds) \(secondsForm)"
-            formattedDuration = "\(hoursString) \(minutesString) \(secondsString)"
+        let formatter = MeasurementFormatter()
+        formatter.unitStyle = .long
+        formatter.unitOptions = .providedUnit
+
+        let hours = duration / 3600
+        let minutes = (duration % 3600) / 60
+        let seconds = duration % 60
+
+        var components: [String] = []
+
+        if hours > 0 {
+            let hoursMeasurement = Measurement(value: Double(hours), unit: UnitDuration.hours)
+            components.append(formatter.string(from: hoursMeasurement))
         }
-        return formattedDuration
+
+        if minutes > 0 {
+            let minutesMeasurement = Measurement(value: Double(minutes), unit: UnitDuration.minutes)
+            components.append(formatter.string(from: minutesMeasurement))
+        }
+
+        let secondsMeasurement = Measurement(value: Double(seconds), unit: UnitDuration.seconds)
+        components.append(formatter.string(from: secondsMeasurement))
+
+        return components.joined(separator: " ")
     }
 }
+

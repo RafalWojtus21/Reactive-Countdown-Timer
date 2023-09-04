@@ -24,7 +24,11 @@ final class TimerScreenViewController: BaseViewController, TimerScreenView {
     private var sessionTrackerSubject = PublishSubject<[TimerScreen.Row]>()
     private var currentSessionIndexSubject = BehaviorSubject<Int>(value: 0)
     
-    private lazy var sessionContentView = UIView(backgroundColor: .secondaryColor)
+    private lazy var sessionContentView: UIView = {
+        let view = UIView(backgroundColor: .secondaryColor)
+        view.layer.cornerRadius = 20
+        return view
+    }()
     
     private lazy var currentSessionNameLabel: UILabel = {
         let label = UILabel()
@@ -125,15 +129,15 @@ final class TimerScreenViewController: BaseViewController, TimerScreenView {
         view.addSubview(timerControlView)
         view.addSubview(eventControlView)
         
+        sessionContentView.snp.makeConstraints {
+            $0.top.left.right.equalToSuperview()
+            $0.height.equalToSuperview().multipliedBy(0.8)
+        }
+        
         currentSessionNameLabel.snp.makeConstraints {
             $0.left.right.equalToSuperview()
             $0.top.equalTo(view.safeAreaLayoutGuide).inset(50)
             $0.height.equalTo(50)
-        }
-        
-        sessionContentView.snp.makeConstraints {
-            $0.top.left.right.equalToSuperview()
-            $0.height.equalToSuperview().multipliedBy(0.8)
         }
         
         timeLeftLabel.snp.makeConstraints {
@@ -148,7 +152,7 @@ final class TimerScreenViewController: BaseViewController, TimerScreenView {
         }
         
         timerControlView.snp.makeConstraints {
-            $0.top.equalTo(sessionContentView.snp.bottom).offset(12)
+            $0.bottom.equalTo(eventControlView.snp.top).offset(-12)
             $0.height.equalTo(50)
             $0.left.right.equalToSuperview()
         }
@@ -164,7 +168,7 @@ final class TimerScreenViewController: BaseViewController, TimerScreenView {
         }
         
         eventControlView.snp.makeConstraints {
-            $0.top.equalTo(timerControlView.snp.bottom).offset(12)
+            $0.bottom.equalToSuperview().inset(26)
             $0.height.equalTo(50)
             $0.left.right.equalToSuperview()
         }
@@ -181,7 +185,7 @@ final class TimerScreenViewController: BaseViewController, TimerScreenView {
         
         tableView.snp.makeConstraints {
             $0.left.right.equalToSuperview()
-            $0.bottom.equalToSuperview().inset(24)
+            $0.top.equalTo(circularProgressBar.snp.bottom).offset(24)
             $0.height.equalTo(160)
         }
     }
@@ -189,7 +193,7 @@ final class TimerScreenViewController: BaseViewController, TimerScreenView {
     private func bindControls() {
         sessionTrackerSubject
             .bind(to: tableView.rx.items(cellIdentifier: SessionTrackerCell.reuseIdentifier, cellType: SessionTrackerCell.self)) { _, item, cell in
-                cell.configure(with: SessionTrackerCell.ViewModel(sessionName: item.session.title, duration: item.session.duration, isSelected: item.isSelected))
+                cell.configure(with: SessionTrackerCell.ViewModel(sessionName: item.session.title, duration: item.session.scheduledDuration, isSelected: item.isSelected))
             }
             .disposed(by: bag)
         
@@ -199,7 +203,7 @@ final class TimerScreenViewController: BaseViewController, TimerScreenView {
             .subscribe(onNext: { [weak self] currentSessionIndex in
                 guard let self else { return }
                 let indexPath = IndexPath(row: currentSessionIndex, section: 0)
-                self.tableView.selectRow(at: indexPath, animated: true, scrollPosition: .middle)
+                self.tableView.selectRow(at: indexPath, animated: true, scrollPosition: .top)
             })
             .disposed(by: bag)
         
@@ -225,8 +229,8 @@ final class TimerScreenViewController: BaseViewController, TimerScreenView {
     
     private func trigger(effect: Effect) {
         switch effect {
-        case .codeReviewPlanFinished:
-            print("plan finished")
+        case .codeReviewPlanFinished(let plan):
+            break
         }
     }
     

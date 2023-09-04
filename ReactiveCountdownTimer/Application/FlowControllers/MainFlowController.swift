@@ -7,6 +7,9 @@ protocol HasAppNavigation {
 
 protocol AppNavigation: AnyObject {
     func startApplication()
+    func showTimerScreen()
+    func showSummaryScreen(_ finishedSession: FinishedSessionPlan)
+    func dismiss()
 }
 
 final class MainFlowController: AppNavigation {
@@ -35,7 +38,8 @@ final class MainFlowController: AppNavigation {
     
     // MARK: - Builders
     
-    private lazy var timerScreenBuilder: TimerScreenBuilder = TimerScreenBuilderImpl(dependencies: extendedDependencies)
+    private var timerScreenBuilder: TimerScreenBuilder?
+    private lazy var summaryScreenBuilder: SummaryScreenBuilder = SummaryScreenBuilderImpl(dependencies: extendedDependencies)
 
     // MARK: - Initialization
     
@@ -46,17 +50,29 @@ final class MainFlowController: AppNavigation {
     // MARK: - AppNavigation
     
     func startApplication() {
-        showtimerScreen()
+        showTimerScreen()
     }
     
-    private func showtimerScreen() {
+    func showTimerScreen() {
+        timerScreenBuilder = TimerScreenBuilderImpl(dependencies: extendedDependencies)
+        guard let timerScreenBuilder else { return }
         let codeReviewPlan: [CodeReviewSession] = [
-            CodeReviewSession(title: "Feature A Review", duration: 20),
-            CodeReviewSession(title: "Bug Fix Review", duration: 10),
-            CodeReviewSession(title: "Refactoring Review", duration: 15),
-            CodeReviewSession(title: "Documentation Review", duration: 19),
+            CodeReviewSession(title: "Feature A Review", scheduledDuration: 88, actualDuration: nil),
+            CodeReviewSession(title: "Bug Fix Review", scheduledDuration: 240, actualDuration: nil),
+            CodeReviewSession(title: "Refactoring Review", scheduledDuration: 300, actualDuration: nil),
+            CodeReviewSession(title: "Documentation Review", scheduledDuration: 60, actualDuration: nil),
         ]
         let view = timerScreenBuilder.build(with: .init(codeReviewPlan: codeReviewPlan)).view
+        dependencies.navigation.set(view: view, animated: false)
+    }
+    
+    func showSummaryScreen(_ finishedSession: FinishedSessionPlan) {
+        let view = summaryScreenBuilder.build(with: .init(finishedSession: finishedSession)).view
         dependencies.navigation.show(view: view, animated: false)
+        timerScreenBuilder = nil
+    }
+    
+    func dismiss() {
+        dependencies.navigation.dismiss(completion: nil, animated: true)
     }
 }
