@@ -14,6 +14,7 @@ final class SummaryScreenViewController: BaseViewController, SummaryScreenView {
     typealias ViewState = SummaryScreenViewState
     typealias Effect = SummaryScreenEffect
     typealias Intent = SummaryScreenIntent
+    typealias L = Localization.SummaryScreen
     
     @IntentSubject() var intents: Observable<SummaryScreenIntent>
     
@@ -59,7 +60,7 @@ final class SummaryScreenViewController: BaseViewController, SummaryScreenView {
         return collectionView
     }()
 
-    private lazy var doneButton = UIButton().apply(style: .primary, title: "Done")
+    private lazy var doneButton = UIButton().apply(style: .primary, title: L.doneButtonTitle)
     
     init(presenter: SummaryScreenPresenter) {
         self.presenter = presenter

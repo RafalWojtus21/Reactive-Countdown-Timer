@@ -9,6 +9,7 @@ import UIKit
 import SnapKit
 
 class SessionSummaryCollectionViewCell: UICollectionViewCell, CollectionViewReusableCell {
+    typealias L = Localization.SummaryScreen
     
     struct ViewModel {
         let sessionName: String
@@ -53,7 +54,7 @@ class SessionSummaryCollectionViewCell: UICollectionViewCell, CollectionViewReus
     
     func configure(with viewModel: ViewModel) {
         sessionNameLabel.text = viewModel.sessionName
-        totalTimeLabel.text = "Total time: " + "\(Int.calculateFormattedDuration(duration: viewModel.totalTime))"
+        totalTimeLabel.text = L.totalTime + "\(Int.calculateFormattedDuration(duration: viewModel.totalTime))"
     }
     
     // MARK: Private Implementation

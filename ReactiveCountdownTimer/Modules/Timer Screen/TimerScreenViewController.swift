@@ -14,6 +14,7 @@ final class TimerScreenViewController: BaseViewController, TimerScreenView {
     typealias ViewState = TimerScreenViewState
     typealias Effect = TimerScreenEffect
     typealias Intent = TimerScreenIntent
+    typealias L = Localization.TimerScreen
     
     @IntentSubject() var intents: Observable<TimerScreenIntent>
     
@@ -48,10 +49,10 @@ final class TimerScreenViewController: BaseViewController, TimerScreenView {
         return label
     }()
 
-    private lazy var startButton = UIButton().apply(style: .primary, title: "Start")
+    private lazy var startButton = UIButton().apply(style: .primary, title: L.startbuttonTitle)
     
     private lazy var nextEventButton: UIButton = {
-        let button = UIButton().apply(style: .primary, title: "Next")
+        let button = UIButton().apply(style: .primary, title: L.nextbuttonTitle)
         button.isHidden = true
         return button
     }()
@@ -71,7 +72,7 @@ final class TimerScreenViewController: BaseViewController, TimerScreenView {
     }()
     
     private lazy var pauseButton: UIButton = {
-        let button = UIButton().apply(style: .quaternary, title: "Pause")
+        let button = UIButton().apply(style: .quaternary, title: L.pausebuttonTitle)
         button.isHidden = true
         button.layer.borderColor = UIColor.black.cgColor
         button.layer.borderWidth = 1
@@ -79,7 +80,7 @@ final class TimerScreenViewController: BaseViewController, TimerScreenView {
     }()
     
     private lazy var resumeButton: UIButton = {
-        let button = UIButton().apply(style: .quaternary, title: "Resume")
+        let button = UIButton().apply(style: .quaternary, title: L.resumebuttonTitle)
         button.isHidden = true
         button.layer.borderColor = UIColor.black.cgColor
         button.layer.borderWidth = 1
@@ -229,7 +230,7 @@ final class TimerScreenViewController: BaseViewController, TimerScreenView {
     
     private func trigger(effect: Effect) {
         switch effect {
-        case .codeReviewPlanFinished(let plan):
+        case .codeReviewPlanFinished:
             break
         }
     }

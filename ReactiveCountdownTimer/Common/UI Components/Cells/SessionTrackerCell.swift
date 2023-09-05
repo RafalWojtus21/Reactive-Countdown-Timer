@@ -9,7 +9,6 @@ import UIKit
 import SnapKit
 
 class SessionTrackerCell: UITableViewCell, ReusableCell {
-    typealias L = Localization.General
     
     struct ViewModel {
         let sessionName: String

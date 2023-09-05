@@ -36,6 +36,13 @@ final class MainFlowController: AppNavigation {
     // swiftlint:disable:next redundant_type_annotation
     private lazy var extendedDependencies: ExtendedDependencies = ExtendedDependencies(dependencies: dependencies, appNavigation: self)
     
+    private let codeReviewPlan: [CodeReviewSession] = [
+        CodeReviewSession(title: "Feature A Review", scheduledDuration: 88, actualDuration: nil),
+        CodeReviewSession(title: "Bug Fix Review", scheduledDuration: 240, actualDuration: nil),
+        CodeReviewSession(title: "Refactoring Review", scheduledDuration: 300, actualDuration: nil),
+        CodeReviewSession(title: "Documentation Review", scheduledDuration: 60, actualDuration: nil),
+    ]
+    
     // MARK: - Builders
     
     private var timerScreenBuilder: TimerScreenBuilder?
@@ -56,12 +63,6 @@ final class MainFlowController: AppNavigation {
     func showTimerScreen() {
         timerScreenBuilder = TimerScreenBuilderImpl(dependencies: extendedDependencies)
         guard let timerScreenBuilder else { return }
-        let codeReviewPlan: [CodeReviewSession] = [
-            CodeReviewSession(title: "Feature A Review", scheduledDuration: 88, actualDuration: nil),
-            CodeReviewSession(title: "Bug Fix Review", scheduledDuration: 240, actualDuration: nil),
-            CodeReviewSession(title: "Refactoring Review", scheduledDuration: 300, actualDuration: nil),
-            CodeReviewSession(title: "Documentation Review", scheduledDuration: 60, actualDuration: nil),
-        ]
         let view = timerScreenBuilder.build(with: .init(codeReviewPlan: codeReviewPlan)).view
         dependencies.navigation.set(view: view, animated: false)
     }

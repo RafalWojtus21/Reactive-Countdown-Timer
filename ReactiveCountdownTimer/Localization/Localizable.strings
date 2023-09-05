@@ -6,4 +6,14 @@
   
 */
 
-// MARK: General
+// MARK: Timer Screen
+
+"TimerScreen.StartButtonTitle" = "Start";
+"TimerScreen.NextButtonTitle" = "Next";
+"TimerScreen.PauseButtonTitle" = "Pause";
+"TimerScreen.ResumeButtonTitle" = "Resume";
+
+// MARK: Summary Screen
+
+"SummaryScreen.TotalTime" = "Total time: ";
+"SummaryScreen.DoneButtonTitle" = "Done";

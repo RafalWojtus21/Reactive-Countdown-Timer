@@ -58,6 +58,8 @@
 		8B425BCF2AA732F900A3A762 /* UICollectionViewCellExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B425BCE2AA732F900A3A762 /* UICollectionViewCellExtension.swift */; };
 		8B425BD12AA7334A00A3A762 /* PaddingLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B425BD02AA7334A00A3A762 /* PaddingLabel.swift */; };
 		8B425BD32AA73AB700A3A762 /* DateFormatterExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B425BD22AA73AB700A3A762 /* DateFormatterExtension.swift */; };
+		8B425BD52AA741B400A3A762 /* Localization.SummaryScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B425BD42AA741B400A3A762 /* Localization.SummaryScreen.swift */; };
+		8B425BD72AA7429D00A3A762 /* Localization.TimerScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B425BD62AA7429D00A3A762 /* Localization.TimerScreen.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -129,6 +131,8 @@
 		8B425BCE2AA732F900A3A762 /* UICollectionViewCellExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UICollectionViewCellExtension.swift; sourceTree = "<group>"; };
 		8B425BD02AA7334A00A3A762 /* PaddingLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaddingLabel.swift; sourceTree = "<group>"; };
 		8B425BD22AA73AB700A3A762 /* DateFormatterExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateFormatterExtension.swift; sourceTree = "<group>"; };
+		8B425BD42AA741B400A3A762 /* Localization.SummaryScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Localization.SummaryScreen.swift; sourceTree = "<group>"; };
+		8B425BD62AA7429D00A3A762 /* Localization.TimerScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Localization.TimerScreen.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -269,9 +273,11 @@
 		8B32ADE82AA0797400FA60F2 /* Localization */ = {
 			isa = PBXGroup;
 			children = (
-				8B32ADE92AA0797400FA60F2 /* Localization.swift */,
 				8B32ADEA2AA0797400FA60F2 /* Localizable.strings */,
+				8B32ADE92AA0797400FA60F2 /* Localization.swift */,
 				8B32ADEB2AA0797400FA60F2 /* Localization.General.swift */,
+				8B425BD62AA7429D00A3A762 /* Localization.TimerScreen.swift */,
+				8B425BD42AA741B400A3A762 /* Localization.SummaryScreen.swift */,
 			);
 			path = Localization;
 			sourceTree = "<group>";
@@ -541,6 +547,7 @@
 				8B425BCD2AA732E100A3A762 /* SessionSummaryCollectionViewCell.swift in Sources */,
 				8B425BCA2AA7313E00A3A762 /* SummaryScreenInteractor.swift in Sources */,
 				8B425BC62AA7313E00A3A762 /* SummaryScreenPresenter.swift in Sources */,
+				8B425BD72AA7429D00A3A762 /* Localization.TimerScreen.swift in Sources */,
 				8B425BD32AA73AB700A3A762 /* DateFormatterExtension.swift in Sources */,
 				8B32ADEE2AA0797400FA60F2 /* Localization.General.swift in Sources */,
 				8B425BC72AA7313E00A3A762 /* SummaryScreenMiddleware.swift in Sources */,
@@ -571,6 +578,7 @@
 				8B425BC52AA7313E00A3A762 /* SummaryScreenContract.swift in Sources */,
 				8B32AE282AA0813300FA60F2 /* TimerScreenContract.swift in Sources */,
 				8B32AE342AA0BA5200FA60F2 /* AnimationKeys.swift in Sources */,
+				8B425BD52AA741B400A3A762 /* Localization.SummaryScreen.swift in Sources */,
 				8B425BC82AA7313E00A3A762 /* SummaryScreenViewController.swift in Sources */,
 				8B32AE2A2AA0813300FA60F2 /* TimerScreenMiddleware.swift in Sources */,
 				8B32ADCB2AA0795800FA60F2 /* SceneDelegate.swift in Sources */,
